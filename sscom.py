@@ -13,20 +13,19 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(mywindow, self).__init__()
         self.setupUi(self)
-        # self.filepath.setText("SaveWindows2018_7_31_7-57-57.TXT")
+        self.filepath.setText("SaveWindows2018_7_31_7-57-57.TXT")
         filepathstr = self.filepath.text()
         print(filepathstr)
 
         self.analyzeButton.clicked.connect(self.analyzeentry)
-        # self.browseButton.clicked.connect()
-        # self.filename.textChanged.connect()
         self.openxlsx.clicked.connect(self.openxls)
+        # self.browseButton.clicked.connect()
 
 
     def openxls(self):
         filepathstr = self.getfilepath()
         pattern = r'(.+?)\.'
-        pathname = "".join(re.findall(pattern, filepathstr.encode('utf-8'), flags=re.IGNORECASE))+'.xlsx'
+        pathname = "".join(re.findall(pattern, filepathstr, flags=re.IGNORECASE))+'.xlsx'
         win32api.ShellExecute(0, 'open', pathname, '', '', 1)
 
 
