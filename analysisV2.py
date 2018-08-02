@@ -30,10 +30,10 @@ def analyze(filename, protId='10'):
     pattern = r'(.+?)\.'
     pathname = "".join(re.findall(pattern, filename, flags=re.IGNORECASE))
     xlspath = pathname + ".xlsx"
-    xlsfile = os.getcwd() + "\\" + xlspath
+    xlsfile = xlspath
 
     sqlpath = pathname + ".db"
-    sqlfile = os.getcwd() + "\\" + sqlpath
+    sqlfile = sqlpath
 
     print(sqlfile)
     print(xlsfile)
