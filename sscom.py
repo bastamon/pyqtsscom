@@ -9,8 +9,6 @@ import sys
 import os
 
 
-
-
 class mywindow(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(mywindow, self).__init__()
@@ -23,17 +21,14 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         self.openxlsx.clicked.connect(self.openxls)
         self.browseButton.clicked.connect(self.setBrowerPath)
 
-
     def openxls(self):
         filepathstr = self.getfilepath()
         pattern = r'(.+?)\.'
         pathname = "".join(re.findall(pattern, filepathstr, flags=re.IGNORECASE)) + '.xlsx'
         win32api.ShellExecute(0, 'open', pathname, '', '', 1)
 
-
     def getfilepath(self):
         return self.filepath.text()
-
 
     def analyzeentry(self):
         if self.proId.text() == '':
@@ -51,15 +46,13 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         filepathstr = self.getfilepath()
         pattern = r'(.+?)\.'
         pathname = "".join(re.findall(pattern, filepathstr, flags=re.IGNORECASE)) + '.db'
-        if ~os.path.exists(pathname):
-            self.analyzeButton.setEnabled(True)
-        else:
+        if os.path.exists(pathname):
             self.analyzeButton.setEnabled(False)
+        else:
+            self.analyzeButton.setEnabled(True)
 
 
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     myshow = mywindow()
     myshow.show()
