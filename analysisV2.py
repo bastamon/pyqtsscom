@@ -8,8 +8,7 @@ import datetime
 import sqlite3
 
 
-
-def read(filename,protId='10'):
+def read(filename, protId='10'):
     with open(filename) as readfile:
         content = readfile.read()
     content1 = content.split(" ")
@@ -24,8 +23,8 @@ def read(filename,protId='10'):
 
 
 def analyze(filename, protId='10'):
-    strvar=""
-    strvar += read(filename,protId)
+    strvar = ""
+    strvar += read(filename, protId)
 
     pattern = r'(.+?)\.'
     pathname = "".join(re.findall(pattern, filename, flags=re.IGNORECASE))
@@ -70,13 +69,13 @@ def savexls(content, filename):
     for i, x in enumerate(results_dara):
         try:
             ws['A' + str(i + 2)] = x[0]
-            ws['B' + str(i + 2)] = x[1] # "".join(field[2:4])
-            ws['C' + str(i + 2)] = x[2] # float(RSSI_Val)  # gettime # RSSI need to convert
-            ws['D' + str(i + 2)] = x[3] # int("".join(field[4:6]), 16)  # seqNo
-            ws['E' + str(i + 2)] = x[4] # datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            ws['F' + str(i + 2)] = x[5] # Voltage  # "".join(field[7:9]) # voltage need to convert
-            ws['G' + str(i + 2)] = x[6] # int("".join(field[9]), 16)  # hopCount
-            ws['H' + str(i + 2)] = x[7] # timedifference  # "".join(field[10:]) # timedifference need to convert
+            ws['B' + str(i + 2)] = x[1]  # "".join(field[2:4])
+            ws['C' + str(i + 2)] = x[2]  # float(RSSI_Val)  # gettime # RSSI need to convert
+            ws['D' + str(i + 2)] = x[3]  # int("".join(field[4:6]), 16)  # seqNo
+            ws['E' + str(i + 2)] = x[4]  # datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            ws['F' + str(i + 2)] = x[5]  # Voltage  # "".join(field[7:9]) # voltage need to convert
+            ws['G' + str(i + 2)] = x[6]  # int("".join(field[9]), 16)  # hopCount
+            ws['H' + str(i + 2)] = x[7]  # timedifference  # "".join(field[10:]) # timedifference need to convert
         except IndexError as err:
             print("out of the field range of endline. " + str(err))
             break
@@ -99,7 +98,7 @@ def savexls(content, filename):
         con = sqlite3.connect(sqlfile)
         cur = con.cursor()
         statistic_data = cur.execute("SELECT * FROM Statistic;").fetchall()
-        for i,x in enumerate(statistic_data):
+        for i, x in enumerate(statistic_data):
             ws1['A' + str(i + 2)] = x[0]
             ws1['B' + str(i + 2)] = x[1]
             ws1['C' + str(i + 2)] = x[2]
@@ -113,9 +112,6 @@ def savexls(content, filename):
     except sqlite3.Error as e:
         print('sqlite3 error occur In extract: %s', e.args[0])
     wb.save(filename)
-
-
-
 
 
 def savesql(content, filename):
@@ -212,19 +208,19 @@ def Statistic(filename):
 
         row = [0 for _ in range(7)]
         row[0] = x  # nodeId
-        row[1] = lossPkgCount#lossPkgCount
-        row[2] = float(lossPkgCount) / (recvCount + lossPkgCount)# lossPkgRate
+        row[1] = lossPkgCount  # lossPkgCount
+        row[2] = float(lossPkgCount) / (recvCount + lossPkgCount)  # lossPkgRate
         row[3] = avgRSSI
         row[4] = voltDiff
         row[5] = avgHopCount
         row[6] = TimeDiff
-        cur.execute('''insert into Statistic(nodeId,lossPkgCount,lossPkgRate,avgRSSI,voltDiff,avgHopCount,TimeDiff) values(?,?,?,?,?,?,?)''', tuple(row))
+        cur.execute(
+            '''insert into Statistic(nodeId,lossPkgCount,lossPkgRate,avgRSSI,voltDiff,avgHopCount,TimeDiff) values(?,?,?,?,?,?,?)''',
+            tuple(row))
     con.commit()
     cur.close()
     con.close()
     print("statistic complete")
-
-
 
 
 def main():
@@ -232,13 +228,12 @@ def main():
     sys.argv.append('')
     assert len(sys.argv) >= 3, "can input only one parameter 'filename.txt'"
     # strvar = ""
-    if len(sys.argv) > 3 :
+    if len(sys.argv) > 3:
         analyze(sys.argv[1], sys.argv[2])
         # strvar += read(sys.argv[1],sys.argv[2])
     elif len(sys.argv) == 3:
         analyze(sys.argv[1])
         # strvar += read(sys.argv[1])
-
 
 
 if __name__ == '__main__':
