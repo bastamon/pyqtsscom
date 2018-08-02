@@ -1,6 +1,7 @@
 # -*-coding:utf-8 -*-
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtGui import QPalette
 from pyqtsscom import Ui_Form
 import analysisV2
 import re
@@ -48,6 +49,8 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         pathname = "".join(re.findall(pattern, filepathstr, flags=re.IGNORECASE)) + '.db'
         if os.path.exists(pathname):
             self.analyzeButton.setEnabled(False)
+            self.infolabel.setStyleSheet("color: rgb(255, 0, 127);")
+            self.infolabel.setText("文件已解析完毕，可直接打开")
         else:
             self.analyzeButton.setEnabled(True)
 
