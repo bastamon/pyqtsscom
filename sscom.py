@@ -1,7 +1,6 @@
 # -*-coding:utf-8 -*-
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-from PyQt5.QtGui import QPalette
 from pyqtsscom import Ui_Form
 import analysisV2
 import re
