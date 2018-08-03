@@ -38,6 +38,7 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
             self.proId.setText('05')
         analysisV2.analyze(self.getfilepath(), self.proId.text())
         self.analyzeButton.setEnabled(False)
+        self.openxlsx.setEnabled(True)
 
     def setBrowerPath(self):
         fileName1, filetype = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd(),
@@ -50,6 +51,7 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
             self.analyzeButton.setEnabled(False)
             self.infolabel.setStyleSheet("color: rgb(255, 0, 127);")
             self.infolabel.setText("文件已解析完毕，可直接打开")
+            self.openxlsx.setEnabled(True)
         else:
             self.analyzeButton.setEnabled(True)
 

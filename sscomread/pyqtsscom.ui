@@ -22,6 +22,11 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>浏览</string>
    </property>
@@ -40,6 +45,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="openxlsx">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -60,6 +68,11 @@
      <width>31</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>路径:</string>
@@ -88,20 +101,25 @@
   <widget class="QLabel" name="ptoId_label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>110</y>
-     <width>71</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>协议识别码:</string>
+    <string>协议识别码protId:</string>
    </property>
   </widget>
   <widget class="QLabel" name="infolabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>40</x>
      <y>200</y>
      <width>201</width>
      <height>31</height>
