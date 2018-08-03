@@ -4,7 +4,8 @@ from PyQt5.QtWidgets import QFileDialog
 from pyqtsscom import Ui_Form
 import analysisV2
 import re
-import win32api, win32gui
+import win32api
+import win32gui
 import sys
 import os
 
