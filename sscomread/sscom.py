@@ -35,8 +35,8 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         if self.proId.text() == '':
             assert self.proId.text() == '', 'need protId'
             # analysisV2.analyze(self.getfilepath(), self.proId.text())
-        else:
-            self.proId.setText('05')
+        # else:
+        #     self.proId.setText('05')
         analysisV2.analyze(self.getfilepath(), self.proId.text())
         self.analyzeButton.setEnabled(False)
         self.openxlsx.setEnabled(True)
