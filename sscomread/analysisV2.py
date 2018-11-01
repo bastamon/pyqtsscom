@@ -202,7 +202,8 @@ def Statistic(filename):
         lossPkgCount = 0
         seq_data = cur.execute("SELECT seqNo FROM Results WHERE nodeId = '" + x + "' ORDER BY seqNo ASC;").fetchall()
         for j in range(1, len(seq_data)):
-            if seq_data[j - 1][0] + 1 != seq_data[j][0]:
+            # < 排除了可能重发而导致的逻辑丢包计数
+            if seq_data[j - 1][0] + 1 < seq_data[j][0]:
                 lossPkgCount += seq_data[j][0] - seq_data[j - 1][0] - 1
 
         row = [0 for _ in range(7)]
