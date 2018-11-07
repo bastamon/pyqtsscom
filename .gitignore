@@ -2,3 +2,5 @@
 /sscomread/*.ui
 /.vscode
 /*.xlsx
+/sscomread/*.pyc
+/sscomread/__pycache__
