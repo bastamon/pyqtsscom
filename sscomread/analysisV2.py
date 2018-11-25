@@ -5,6 +5,7 @@ import re
 import openpyxl
 import datetime
 import sqlite3
+from timesimulation import timesimulate
 
 
 def read(filename, protId='10'):
@@ -184,6 +185,13 @@ def Statistic(filename):
         print('sqlite3 error occur In create: %s', e.args[0])
 
     rows = cur.execute("SELECT * FROM Results ORDER BY nodeId ASC,seqNo ASC;").fetchall()
+    # 此处通过修改时间对已有db文件的时间戳更改
+    date1=timesimulate(filename)
+
+
+
+
+    #
     row_seq = []
     row_seq.append(rows[0][1])
     for i in range(1, len(rows)):
