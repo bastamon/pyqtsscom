@@ -236,8 +236,13 @@ def Statistic(filename):
 def timestamp(filename):
     con = sqlite3.connect(filename)
     cur = con.cursor()
-    cur.execute("SELECT nodeId FROM Statistic;").fetchall()
-    noderows = cur.execute("SELECT max(volt) FROM Results WHERE nodeId = '" + x + "';").fetchall()
+    nodeIds = cur.execute("SELECT nodeId FROM Statistic;").fetchall()
+    for x in nodeIds:
+        idrows = cur.execute("SELECT id FROM Results WHERE nodeId = '" + x + "'ORDER BY seqNo;").fetchall()
+        date1 = timesimulate(filename)
+        for y in idrows:
+            cur.execute("update Results set gettime = date1.strftime('%Y-%m-%d %H:%M:%S:%f') WHERE id = '" + y + "';")
+            date1 = date1+datetime.timedelta(seconds=2)
 
 
 def main():
