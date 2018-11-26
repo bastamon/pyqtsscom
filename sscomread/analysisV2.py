@@ -186,7 +186,7 @@ def Statistic(filename):
 
     rows = cur.execute("SELECT * FROM Results ORDER BY nodeId ASC,seqNo ASC;").fetchall()
     # 此处通过修改时间对已有db文件的时间戳更改
-    date1 = timesimulate(filename)
+    # date1 = timesimulate(filename)
     # date1 = date1+datetime.timedelta(seconds=2)
 
 
